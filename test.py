@@ -91,7 +91,8 @@ nombre_nino = st.text_input("Nombre del niño:")
 fecha_nacimiento = st.date_input(
     "Fecha de nacimiento del niño:",
     value=None, # Puedes poner datetime.date(2015, 1, 1) como predeterminado
-    min_value=datetime.date(2006, 1, 1), # Límite inferior
+    #min_value=datetime.date(2006, 1, 1), # Límite inferior
+    min_value = datetime.date.today() - datetime.timedelta(days=730)
     #max_value=datetime.date.today(),      # No permite fechas futuras
     format="DD/MM/YYYY"
 )
