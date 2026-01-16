@@ -221,7 +221,7 @@ if procesado:
             "#f1c40f", "#e67e22", "#1abc9c", "#34495e"
         ])
         ax.set_ylabel("Puntuación")
-        ax.set_title("Puntuación por Inteligencia")
+        ax.set_title("Puntuación por observacion")
         ax.bar_label(barras, labels=[f"{valor}" for valor in subtotales.values()], padding=3)
         plt.xticks(rotation=45, ha='right')  # Inclinar etiquetas a 45 grados
         st.pyplot(fig)
