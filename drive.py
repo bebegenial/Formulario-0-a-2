@@ -21,7 +21,7 @@ def guardar_en_google_sheets(nombre, correo, telefono, nombre_nino, fecha_nacimi
         respuestas (dict): Diccionario con las respuestas del test.
     """
     # Configurar credenciales desde variables de entorno desde el archivo .env
-    creds_dict = {
+    '''creds_dict = {
         "type": os.getenv("GOOGLE_SHEETS_TYPE"),
         "project_id": os.getenv("GOOGLE_SHEETS_PROJECT_ID"),
         "private_key_id": os.getenv("GOOGLE_SHEETS_PRIVATE_KEY_ID"),
@@ -33,9 +33,9 @@ def guardar_en_google_sheets(nombre, correo, telefono, nombre_nino, fecha_nacimi
         "auth_provider_x509_cert_url": os.getenv("GOOGLE_SHEETS_AUTH_PROVIDER_X509_CERT_URL"),
         "client_x509_cert_url": os.getenv("GOOGLE_SHEETS_CLIENT_X509_CERT_URL"),
         "universe_domain": "googleapis.com"
-    }
+    }'''
     # Para utilizar desde streamlit
-    '''creds_dict = {
+    creds_dict = {
         "type": st.secrets["GOOGLE_SHEETS_TYPE"],
         "project_id": st.secrets["GOOGLE_SHEETS_PROJECT_ID"],
         "private_key_id": st.secrets["GOOGLE_SHEETS_PRIVATE_KEY_ID"],
@@ -47,7 +47,7 @@ def guardar_en_google_sheets(nombre, correo, telefono, nombre_nino, fecha_nacimi
         "auth_provider_x509_cert_url": st.secrets["GOOGLE_SHEETS_AUTH_PROVIDER_X509_CERT_URL"],
         "client_x509_cert_url": st.secrets["GOOGLE_SHEETS_CLIENT_X509_CERT_URL"],
         "universe_domain": "googleapis.com"
-    }'''
+    }
 
     # Configuración de Google Sheets
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
