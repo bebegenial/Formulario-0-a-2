@@ -210,7 +210,7 @@ if procesado:
 
         # Mostrar resultados
         st.header("📊 Resultados")
-        st.write("### Subtotales por inteligencia:")
+        st.write("### Subtotales por observacion:")
         for inteligencia, puntaje in subtotales.items():
             st.write(f"- **{inteligencia}**: {puntaje}/12")
 
@@ -248,7 +248,7 @@ if procesado:
 
         # Configurar las etiquetas y título
         ax2.set_thetagrids([a * 180/3.14159 for a in angulos[:-1]], categorias)
-        ax2.set_title("Perfil de Inteligencias Múltiples", size=15, y=1.1)
+        ax2.set_title("Perfil de Observación", size=15, y=1.1)
         ax2.grid(True)
 
         # Establecer el límite del eje radial
