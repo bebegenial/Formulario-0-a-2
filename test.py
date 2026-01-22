@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from drive import guardar_en_google_sheets
+from drive import guardar_en_google_sheets,agregar_contacto
 import datetime
 #pip freeze > requirements.txt
 #streamlit run test.py
@@ -205,15 +205,15 @@ if procesado:
         # Obtener el nombre del comercial a partir del ID seleccionado
         nombre_comercial = comerciales[id_comercial]
 
-        # Guardar en Google Sheets
-        guardar_en_google_sheets(nombre, correo, telefono, nombre_nino, str(fecha_nacimiento), nombre_comercial, respuestas)
-
         # Mostrar resultados
+        resultado_test = ""
         st.header("📊 Resultados")
         st.write("### Subtotales por observacion:")
         for inteligencia, puntaje in subtotales.items():
             st.write(f"- **{inteligencia}**: {puntaje}/12")
-
+            # Creando una variable llamada 'Resultado' que almacena el resultado de los resultados
+            resultado_test += f"- {inteligencia}: {puntaje}/12\n"
+        
         # Gráfico de barras con etiquetas inclinadas
         fig, ax = plt.subplots(figsize=(10, 6))
         barras = ax.bar(subtotales.keys(), subtotales.values(), color=[
@@ -263,3 +263,18 @@ if procesado:
         st.success("Cuando entendemos cómo se expresa un bebé, sabemos cómo acompañarlo mejor.")
         st.button("Procesar resultados", disabled=True, key="boton_procesar_deshabilitado")
 
+        ###########################################################################################
+        # Crear el dato en GHL
+        agregar_contacto(nombre, correo, telefono, nombre_comercial, resultado_test)
+        # Guardar en Google Sheets
+        # Convertimos a minúsculas para que la validación sea insensible a mayúsculas
+        if "prueba" in nombre.lower():
+            print(f"Registro omitido: El nombre '{nombre}' contiene la palabra de control 'prueba'.")
+        else:
+            print(f"Validación exitosa. Procediendo a crear cliente: {nombre}")
+            # Ejecutamos la función que ya definiste anteriormente
+            try:
+                guardar_en_google_sheets(nombre, correo, telefono, nombre_nino, str(fecha_nacimiento), nombre_comercial, respuestas, resultado_test) 
+            except Exception as e:
+                print(f"Error al crear el cliente en Google Sheets: {str(e)}")
+                
